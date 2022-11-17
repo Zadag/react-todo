@@ -1,31 +1,53 @@
 import "./App.css";
 import React from "react";
 import Overview from "./components/Overview";
+import uniqid from "uniqid";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: ["Sample task", "Sample task 2"],
+      tasks: [],
+      task: {
+        text: "",
+        id: uniqid(),
+      },
     };
-    this.addTask = this.addTask.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  addTask() {
-    const task = document.querySelector("input").value;
-
+  handleSubmit() {
     this.setState({
-      tasks: [...this.state.tasks, task],
+      task: {
+        text: this.state.task.text,
+        id: uniqid(),
+      },
+      tasks: [...this.state.tasks, this.state.task],
     });
   }
 
+  handleInput = (event) => {
+    this.setState({
+      task: {
+        text: event.target.value,
+        id: this.state.task.id,
+      },
+    });
+  };
+
   render() {
+    const { task, tasks } = this.state;
+
     return (
       <div className="App">
         <div className="submit-tasks">
-          <input type="text"></input>
-          <button onClick={this.addTask}>Submit</button>
-          <Overview tasks={this.state.tasks} />
+          <input
+            type="text"
+            value={task.text}
+            onChange={this.handleInput}
+          ></input>
+          <button onClick={this.handleSubmit}>Submit</button>
+          <Overview tasks={tasks} />
         </div>
       </div>
     );
