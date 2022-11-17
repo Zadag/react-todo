@@ -1,13 +1,7 @@
 import React from "react";
 
-class Overview extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return <div className="tasks"></div>;
-  }
-}
+const Overview = ({ tasks }) => {
+  return tasks.map((task) => <h1>{task}</h1>);
+};
 
 export default Overview;
