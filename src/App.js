@@ -47,7 +47,9 @@ class App extends React.Component {
             onChange={this.handleInput}
           ></input>
           <button onClick={this.handleSubmit}>Submit</button>
-          <Overview tasks={tasks} />
+          <div className="tasks-container">
+            <Overview tasks={tasks} />
+          </div>
         </div>
       </div>
     );

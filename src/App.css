@@ -7,6 +7,21 @@
   pointer-events: none;
 }
 
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+label {
+  margin-right: 15px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
