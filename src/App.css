@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.delete-icon {
+  height: 1.5rem;
+  margin-left: 10px;
+}
+
 .tasks-container {
   display: flex;
   flex-direction: column;
