@@ -35,6 +35,17 @@ class App extends React.Component {
     });
   };
 
+  deleteTask = (id) => {
+    const deepCopy = [...this.state.tasks];
+    const toBeRemoved = deepCopy.find((task) => task.id === id);
+    console.log(deepCopy, toBeRemoved);
+    const newArr = deepCopy.filter((task) => task.id !== toBeRemoved.id);
+    console.log(newArr);
+    this.setState({
+      tasks: newArr,
+    });
+  };
+
   render() {
     const { task, tasks } = this.state;
 
@@ -48,7 +59,7 @@ class App extends React.Component {
           ></input>
           <button onClick={this.handleSubmit}>Submit</button>
           <div className="tasks-container">
-            <Overview tasks={tasks} />
+            <Overview tasks={tasks} handleDelete={this.deleteTask} />
           </div>
         </div>
       </div>
