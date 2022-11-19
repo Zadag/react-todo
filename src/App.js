@@ -11,6 +11,7 @@ class App extends React.Component {
       task: {
         text: "",
         id: uniqid(),
+        edit: false,
       },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,9 +22,12 @@ class App extends React.Component {
       task: {
         text: this.state.task.text,
         id: uniqid(),
+        edit: false,
       },
       tasks: [...this.state.tasks, this.state.task],
     });
+
+    console.log(this.state.tasks);
   }
 
   handleInput = (event) => {
@@ -31,6 +35,7 @@ class App extends React.Component {
       task: {
         text: event.target.value,
         id: this.state.task.id,
+        edit: false,
       },
     });
   };
