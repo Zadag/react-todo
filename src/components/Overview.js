@@ -2,7 +2,13 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 
-const Overview = ({ tasks, handleDelete }) => {
+const Overview = ({
+  tasks,
+  handleDelete,
+  handleEditButton,
+  handleEditInput,
+  handleSaveEdit,
+}) => {
   return tasks.map((task, index) => {
     if (task.edit === false) {
       return (
@@ -14,6 +20,19 @@ const Overview = ({ tasks, handleDelete }) => {
             icon={faSquareMinus}
             onClick={() => handleDelete(task.id)}
           />
+          <button onClick={() => handleEditButton(task.id)}>Edit</button>
+        </div>
+      );
+    }
+    if (task.edit === true) {
+      return (
+        <div className="task" key={task.id}>
+          <label>{index + 1}</label>
+          <input
+            value={task.text}
+            onChange={(event) => handleEditInput(event, task)}
+          />
+          <button onClick={() => handleSaveEdit(task)}>Save</button>
         </div>
       );
     }

@@ -49,6 +49,37 @@ class App extends React.Component {
     });
   };
 
+  handleEditButton = (id) => {
+    const deepCopy = [...this.state.tasks];
+    // const toEdit = deepCopy.find((task) => task.id === id);
+    deepCopy.forEach((task) => {
+      if (task.id === id) {
+        task.edit = true;
+      }
+    });
+    this.setState({
+      tasks: deepCopy,
+    });
+  };
+
+  handleEditInput = (event, task) => {
+    const deepCopy = [...this.state.tasks];
+    const newTask = deepCopy.find((newTask) => newTask === task);
+    newTask.text = event.target.value;
+    this.setState({
+      tasks: deepCopy,
+    });
+  };
+
+  handleSaveEdit = (task) => {
+    const deepCopy = [...this.state.tasks];
+    const newTask = deepCopy.find((newTask) => newTask === task);
+    newTask.edit = false;
+    this.setState({
+      tasks: deepCopy,
+    });
+  };
+
   render() {
     const { task, tasks } = this.state;
 
@@ -62,7 +93,13 @@ class App extends React.Component {
           ></input>
           <button onClick={this.handleSubmit}>Submit</button>
           <div className="tasks-container">
-            <Overview tasks={tasks} handleDelete={this.deleteTask} />
+            <Overview
+              tasks={tasks}
+              handleDelete={this.deleteTask}
+              handleEditButton={this.handleEditButton}
+              handleEditInput={this.handleEditInput}
+              handleSaveEdit={this.handleSaveEdit}
+            />
           </div>
         </div>
       </div>
