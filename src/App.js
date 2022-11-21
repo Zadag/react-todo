@@ -26,9 +26,11 @@ class App extends React.Component {
       },
       tasks: [...this.state.tasks, this.state.task],
     });
-
-    console.log(this.state.tasks);
   }
+
+  handleSubmitEnter = (event) => {
+    if (event.key === "Enter") this.handleSubmit();
+  };
 
   handleInput = (event) => {
     this.setState({
@@ -71,6 +73,10 @@ class App extends React.Component {
     });
   };
 
+  handleEditEnter = (event, task) => {
+    if (event.key === "Enter") this.handleSaveEdit(task);
+  };
+
   handleSaveEdit = (task) => {
     const deepCopy = [...this.state.tasks];
     const newTask = deepCopy.find((newTask) => newTask === task);
@@ -90,6 +96,7 @@ class App extends React.Component {
             type="text"
             value={task.text}
             onChange={this.handleInput}
+            onKeyDown={this.handleSubmitEnter}
           ></input>
           <button onClick={this.handleSubmit}>Submit</button>
           <div className="tasks-container">
@@ -99,6 +106,7 @@ class App extends React.Component {
               handleEditButton={this.handleEditButton}
               handleEditInput={this.handleEditInput}
               handleSaveEdit={this.handleSaveEdit}
+              handleEditEnter={this.handleEditEnter}
             />
           </div>
         </div>

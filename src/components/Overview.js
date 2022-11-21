@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 
 const Overview = ({
+  handleEditEnter,
   tasks,
   handleDelete,
   handleEditButton,
@@ -31,6 +32,7 @@ const Overview = ({
           <input
             value={task.text}
             onChange={(event) => handleEditInput(event, task)}
+            onKeyDown={(event) => handleEditEnter(event, task)}
           />
           <button onClick={() => handleSaveEdit(task)}>Save</button>
         </div>
